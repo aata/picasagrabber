@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace PicasaGrabber
 {
@@ -23,7 +24,9 @@ namespace PicasaGrabber
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 editPath.Text = fbd.SelectedPath;
-                Grabber.grabberMain(editURL.Text, editPath.Text);
+                Grabber grabObj = new Grabber(editURL.Text,editPath.Text);
+                Thread th = new Thread(grabObj.grabberMain);
+                th.Start();
             }
         }
     }

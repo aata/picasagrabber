@@ -8,7 +8,16 @@ namespace PicasaGrabber
 {
     class Grabber
     {
-        public static void grabberMain(string url, string path)
+        string url = string.Empty;
+        string path = string.Empty;
+
+        public Grabber(string _url , string _path)
+        {
+            url = _url;
+            path = _path;
+        }
+
+        public void grabberMain()
         {
             WebRequest request = WebRequest.Create(url);
 
