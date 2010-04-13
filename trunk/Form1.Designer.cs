@@ -67,6 +67,7 @@
             this.Controls.Add(this.editPath);
             this.Controls.Add(this.buttonDownload);
             this.Controls.Add(this.editURL);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainFrame";
             this.Text = "Picasa Grabber";
