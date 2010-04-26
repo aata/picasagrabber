@@ -15,19 +15,32 @@ namespace PicasaGrabber
         public MainFrame()
         {
             InitializeComponent();
-            this.editPath.Text = Directory.GetCurrentDirectory();
         }
 
-        private void buttonDownload_Click(object sender, EventArgs e)
+        private void buttonChooseFolder_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
-            {
                 editPath.Text = fbd.SelectedPath;
-                Grabber grabObj = new Grabber(editURL.Text,editPath.Text);
-                Thread th = new Thread(grabObj.grabberMain);
-                th.Start();
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            if (editURL.Text == string.Empty)
+            {
+                MessageBox.Show("You must enter a valid picasa album rss url");
+                return;
             }
+
+            if (editPath.Text == string.Empty || !Directory.Exists(editPath.Text))
+            {
+                MessageBox.Show("Invalid path");
+                return;
+            }
+
+            Grabber grabObj = new Grabber(editURL.Text, editPath.Text);
+            Thread th = new Thread(grabObj.grabberMain);
+            th.Start();
         }
     }
 }
