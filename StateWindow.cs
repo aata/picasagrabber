@@ -18,7 +18,8 @@ namespace PicasaGrabber
             _id = id;
 
             InitializeComponent();
-            
+
+            timer1.Interval = 100;
             timer1.Start();
         }
 

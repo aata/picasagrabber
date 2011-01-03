@@ -60,9 +60,10 @@ namespace PicasaGrabber
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(258, 88);
+            this.ControlBox = false;
             this.Controls.Add(this.pbDownloading);
             this.Controls.Add(this.lblDownloading);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "StateWindow";
             this.Text = "StateWindow";
             this.ResumeLayout(false);
