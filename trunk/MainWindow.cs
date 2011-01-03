@@ -38,7 +38,12 @@ namespace PicasaGrabber
                 return;
             }
 
-            Grabber grabObj = new Grabber(editURL.Text, editPath.Text);
+            Guid id = Guid.NewGuid();
+
+            StateWindow window = new StateWindow(id);
+            window.Show();
+
+            Grabber grabObj = new Grabber(id, editURL.Text, editPath.Text);
             Thread th = new Thread(grabObj.grabberMain);
             th.Start();
         }
