@@ -8,13 +8,30 @@ namespace PicasaGrabber
 {
     class Grabber
     {
+        private static Dictionary<Guid, Grabber> _instanceIds = new Dictionary<Guid, Grabber>();
+
+        public static Dictionary<Guid, Grabber> InstanceIds { get { return _instanceIds; } }
+
         string url = string.Empty;
         string path = string.Empty;
+        Guid id;
 
-        public Grabber(string _url , string _path)
+        public Grabber(Guid _id, string _url , string _path)
         {
+            id = _id;
             url = _url;
             path = _path;
+
+            _instanceIds.Add(id, this);
+        }
+
+        private int min = 0, max = 100, val = 0;
+
+        public void GetDownloadState(out int _min, out int _max, out int _val)
+        {
+            _min = min;
+            _max = max;
+            _val = val;
         }
 
         public void grabberMain()
@@ -32,6 +49,9 @@ namespace PicasaGrabber
             completeFile = completeFile.Replace("<enclosure", "\r\n<enclosure");
 
             string[] lines = completeFile.Split(new char[] { '\n' });
+
+            this.val = this.min = 0;
+            this.max = lines.Length;
 
             foreach (string s in lines)
             {
@@ -56,7 +76,10 @@ namespace PicasaGrabber
 
                     fileStream.Close();
                 }
+                this.val++;
             }
+
+            _instanceIds.Remove(this.id);
         }
     }
 }
