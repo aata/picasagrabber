@@ -32,6 +32,7 @@ namespace PicasaGrabber
             this.lblDownloading = new System.Windows.Forms.Label();
             this.pbDownloading = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblDownloading
@@ -48,19 +49,30 @@ namespace PicasaGrabber
             // 
             this.pbDownloading.Location = new System.Drawing.Point(12, 32);
             this.pbDownloading.Name = "pbDownloading";
-            this.pbDownloading.Size = new System.Drawing.Size(234, 44);
+            this.pbDownloading.Size = new System.Drawing.Size(234, 35);
             this.pbDownloading.TabIndex = 1;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(12, 73);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(234, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // StateWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(258, 88);
+            this.ClientSize = new System.Drawing.Size(256, 108);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.pbDownloading);
             this.Controls.Add(this.lblDownloading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -77,5 +89,6 @@ namespace PicasaGrabber
         private System.Windows.Forms.Label lblDownloading;
         private System.Windows.Forms.ProgressBar pbDownloading;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

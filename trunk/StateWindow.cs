@@ -55,5 +55,11 @@ namespace PicasaGrabber
             if (Grabber.InstanceIds.TryGetValue(this._id, out grabber))
                 grabber.Abort();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.Close();
+        }
     }
 }
