@@ -48,5 +48,12 @@ namespace PicasaGrabber
                 this.pbDownloading.Value = 0;
             }
         }
+
+        private void StateWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Grabber grabber;
+            if (Grabber.InstanceIds.TryGetValue(this._id, out grabber))
+                grabber.Abort();
+        }
     }
 }

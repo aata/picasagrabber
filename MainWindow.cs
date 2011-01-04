@@ -12,6 +12,8 @@ namespace PicasaGrabber
 {
     public partial class MainFrame : Form
     {
+        private List<Guid> _grabbersList = new List<Guid>();
+
         public MainFrame()
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace PicasaGrabber
             }
 
             Guid id = Guid.NewGuid();
+            _grabbersList.Add(id);
 
             StateWindow window = new StateWindow(id);
             window.Show();
@@ -46,6 +49,14 @@ namespace PicasaGrabber
             Grabber grabObj = new Grabber(id, editURL.Text, editPath.Text);
             Thread th = new Thread(grabObj.grabberMain);
             th.Start();
+        }
+
+        private void MainFrame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Grabber grabber;
+            foreach (Guid id in _grabbersList)
+                if (Grabber.InstanceIds.TryGetValue(id, out grabber))
+                    grabber.Abort();
         }
     }
 }

@@ -16,6 +16,15 @@ namespace PicasaGrabber
         string path = string.Empty;
         Guid id;
 
+        object aborting = new object();
+        bool abort = false;
+
+        public void Abort()
+        {
+            lock(aborting)
+                abort = true;
+        }
+
         public Grabber(Guid _id, string _url , string _path)
         {
             id = _id;
@@ -77,6 +86,9 @@ namespace PicasaGrabber
                     fileStream.Close();
                 }
                 this.val++;
+
+                if (abort)
+                    break;
             }
 
             _instanceIds.Remove(this.id);
