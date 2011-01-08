@@ -77,6 +77,7 @@ namespace PicasaGrabber
             this.Controls.Add(this.lblDownloading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "StateWindow";
+            this.ShowInTaskbar = false;
             this.Text = "StateWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StateWindow_FormClosing);
             this.ResumeLayout(false);
