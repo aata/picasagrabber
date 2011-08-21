@@ -64,9 +64,11 @@ namespace PicasaGrabber
 
             foreach (string s in lines)
             {
-                if (s.Contains("<enclosure"))
+                if (abort)
+                    break;
+                else if (s.Contains("<enclosure"))
                 {
-                    Regex express = new Regex("http://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?(JPG|jpg)");
+                    Regex express = new Regex("(http|https)://([\\w+?\\.\\w+])+([a-zA-Z0-9\\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\'\\,]*)?(JPG|jpg)");
                     Match m = express.Match(s);
 
                     string[] elements = m.ToString().Split('/');
@@ -86,9 +88,6 @@ namespace PicasaGrabber
                     fileStream.Close();
                 }
                 this.val++;
-
-                if (abort)
-                    break;
             }
 
             _instanceIds.Remove(this.id);
